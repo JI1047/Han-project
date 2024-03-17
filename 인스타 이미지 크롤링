@@ -37,9 +37,9 @@ time.sleep(2)
 #인스타그램 자동로그인하기
 driver.implicitly_wait(10)#나타날때까지 10초동안 기다리기
 login_id =driver.find_element(By.CSS_SELECTOR,'input[name="username"]')# name 속성값이 username인 input찾기
-login_id.send_keys('kjs0010046@gmail.com')#아이디입력
+login_id.send_keys('아이디')#아이디입력
 login_pwd =driver.find_element(By.CSS_SELECTOR,'input[name="password"]')
-login_pwd.send_keys('rlawltjr123@')#비밀번호 입력
+login_pwd.send_keys('비밀번호')#비밀번호 입력
 driver.implicitly_wait(10)
 login_id.send_keys(Keys.ENTER)#enter키 입력
 

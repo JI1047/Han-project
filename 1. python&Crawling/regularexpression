@@ -1,0 +1,16 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+res = urlopen('https://davelee-fun.github.io/blog/crawling_stock_example.html')
+soup = BeautifulSoup(res, "html.parser")
+data = soup.select('li.row_sty')
+
+for i, item in enumerate(data):
+    if i == 4:
+        break
+    name_data=item.select_one('div.st_name').get_text().replace(" ","").replace("\n", "")
+    price_data=item.select_one('div.st_price').get_text().replace(" ","").replace("\n", "")
+    rate_data=item.select_one('div.st_rate').get_text().replace(" ","").replace("\n", "")
+
+    print(name_data+" "+price_data+" "+rate_data)

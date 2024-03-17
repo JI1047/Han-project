@@ -6,8 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import urllib.request
 import ssl
-import os
+import os   
 import time
+
 
 ssl._create_default_https_context=ssl._create_unverified_context
 
@@ -45,28 +46,14 @@ login_id.send_keys(Keys.ENTER)#enter키 입력
 
 time.sleep(5)  # 페이지가 로드되고 로그인되기를 기다립니다.
 
-#태그하고 싶은 검색어를 입력한 사이트로 이동
+#태그하고 싶은 검색어를 입력한 사이트로 이동    
 word = '겨울코디'
 url = insta_searching(word)
 driver.get(url)
 
-#제일 첫번째 게시물 클릭
-time.sleep(15)
-first_image=driver.find_element(By.CSS_SELECTOR,'._aagw').click()
+time.sleep(5)
 
-time.sleep(15)
-
-
-for i in range(2):
-    try:
-        # 사진 저장
-        time.sleep(10)
-        img_element = driver.find_element(By.CSS_SELECTOR, '._aatk .x5yr21d.xu96u03.x1016tqk.x13vifvy.x87ps6o.xh8yej3')
-        img_src = img_element.get_attribute('src')
-        # 이미지 다운로드 및 저장
-        urllib.request.urlretrieve(img_src, f'{i}.jpg')
-        # 다음 이미지로 이동
-        driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-').click()
-    except: 
-        # 오류가 발생한 경우에도 다음 이미지로 이동
-        driver.find_element(By.CSS_SELECTOR, '._aaqg ._abl-').click()
+ji=driver.find_elements(By.CSS_SELECTOR,"div._aagv>img")
+for i in range(len(ji)):
+    urllib.request.urlretrieve(ji[i].get_attribute("src"),"C:/Users/kjs00/OneDrive/Pictures/한이음/사진"+str(i)+".jpg")
+    time.sleep(1)
